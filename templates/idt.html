@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <!--ireps icon-->
+    <link rel="icon" href="static/images/python1.png" type="image/x-icon">
+    <!--fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!--Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+    <!--datatables css-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <!--date range picker-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <!--fixed header-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.css"/>
+    <!--unps css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/unps.css') }}">
+</head>
+<body>
+
+    <div class="main_menu_div" id="main_menu_div-mm">
+      <ul class="mm mml">
+         <li><a href="{{ url_for('idt')}}">unps</a></li>
+      </ul>
+    </div>
+
+    <!--content div-->
+    <div class="mb">
+      <table class="idt" id="idt" ></table>
+    </div>
+
+
+    <!-- jQuery JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+     <!--Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+     <!--Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+    <!--unps.js-->
+    <script src="static/scripts/unps.js" ></script>
+    <!-- datatables JS -->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+</body>
+</html>
