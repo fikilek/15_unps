@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+  {{ super() }}
+{% endblock navbar %}
+
+
+
+{% block content %}
+
+  <div class="mbl">
+      <div class="mbl-content"><h1>mbl content</h1></div>
+  </div>
+  <div class="mbr">
+      <div class="mbr-top">
+          <div class="mbr-top-content"><h1>mbr top</h1></div>
+      </div>
+      <div class="mbr-bottom">
+          <div class="mbr-bottom-content"><h1>mbr top</h1></div>
+      </div>
+  </div>
+
+{% endblock content %}
+
+{% block scripts %}
+  {{ super() }}
+{% endblock scripts %}

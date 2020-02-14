@@ -1,22 +1,22 @@
 from flask import Flask, render_template, jsonify, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-import logging
-from wtforms import StringField, SubmitField, TextAreaField, DateTimeField, FileField, IntegerField, PasswordField, BooleanField
-from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
-from datetime import datetime, timezone
-import os
-from flask_wtf import FlaskForm
-import pandas as pd
-import numpy as np
-from sqlalchemy import func
-import collections
-import uuid
+# import logging
+# from wtforms import StringField, SubmitField, TextAreaField, DateTimeField, FileField, IntegerField, PasswordField, BooleanField
+# from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
+# from datetime import datetime, timezone
+# import os
+# from flask_wtf import FlaskForm
+# import pandas as pd
+# import numpy as np
+# from sqlalchemy import func
+# import collections
+# import uuid
 from flask_login import login_user, current_user, logout_user, login_required, UserMixin, LoginManager
-from flask_bcrypt import Bcrypt
-from werkzeug.utils import secure_filename
-from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-from flask_mail import Message, Mail
+# from flask_bcrypt import Bcrypt
+# from werkzeug.utils import secure_filename
+# from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+# from flask_mail import Message, Mail
 
 
 
@@ -25,17 +25,17 @@ app.config['SECRET_KEY'] = 'cc5738ac48c81fb7d502409a3b6c3d0d'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://fikilek@innopen.co.za:FkInoPen!2#@localhost/ireps'
 app.config['ALLOWED_EXTENSIONS'] = set(['csv'])
 
-app.config['MAIL_SERVER'] = 'smtp.innopen.co.za'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = 'ireps@innopen.co.za'
-app.config['MAIL_PASSWORD'] = 'FkInoPen!2#'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = False
+# app.config['MAIL_SERVER'] = 'smtp.innopen.co.za'
+# app.config['MAIL_PORT'] = 587
+# app.config['MAIL_USERNAME'] = 'ireps@innopen.co.za'
+# app.config['MAIL_PASSWORD'] = 'FkInoPen!2#'
+# app.config['MAIL_USE_TLS'] = False
+# app.config['MAIL_USE_SSL'] = False
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-bcrypt = Bcrypt(app)
-mail = Mail(app)
+# bcrypt = Bcrypt(app)
+# mail = Mail(app)
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'unp_signin'
@@ -95,12 +95,52 @@ def get_unps_data():
     return jsonify(output)
 
 
+########################################################################################################################
+# model - UsersNaturalPerson(s) [unp and unps]
+########################################################################################################################
+
+########################################################################################################################
+# model - AssetCategories
+########################################################################################################################
 
 
+class AssetCategories(db.Model):
+    __tablename__ = 'asset_register_category_arc'
+    arc_a01_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    arc_a02_name = db.Column(db.String())
+    arc_a03_description = db.Column(db.String())
+    arc_a04_code = db.Column(db.String())
+    arc_a05_type = db.Column(db.String())
 
-@app.route("/idt")
-def idt():
-    return render_template("idt.html")
+
+class AssetCategoriesSchema(ma.ModelSchema):
+    class Meta:
+        model = AssetCategories
+
+
+@app.route("/get_arc_data", methods=['POST'])
+def get_arc_data():
+    """arc_data route is used to collect all data about ireps asset register categories data"""
+    asset_register_category_data = AssetCategories.query.all()
+    arc_data_schema = AssetCategoriesSchema(many=True)
+    output = arc_data_schema.dump(asset_register_category_data).data
+    return jsonify(output)
+
+
+########################################################################################################################
+# model - AssetCategories
+########################################################################################################################
+
+
+@app.route("/<ml1>/<ml2>/<ml3>")
+def idt(ml1='', ml2='', ml3=''):
+    return render_template("idt.html", ml1=ml1, ml2=ml2, ml3=ml3)
+
+
+@app.route("/")
+def index():
+    return render_template("index.html", filename="index")
+
 
 
 if __name__ == "__main__":
